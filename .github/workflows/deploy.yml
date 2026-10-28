@@ -41,7 +41,7 @@ jobs:
       - name: Preparar publicación
         uses: actions/upload-pages-artifact@v3
         with:
-          path: EJERCICIO/dist/EJERCICIO
+          path: EJERCICIO/dist/EJERCICIO/browser
 
   deploy:
     environment:

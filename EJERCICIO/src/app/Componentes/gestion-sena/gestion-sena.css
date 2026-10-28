@@ -31,3 +31,28 @@
     gap: 24px;
     margin: 8px 0 16px;
 }
+
+.botones{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.body{
+    margin: 50px;
+}
+.contenedor{
+  width: auto;
+  height: 70px;
+  background-color: #2C2966;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+.contenedor span{
+  margin-left: 20px;
+  font-size: 22px;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+}

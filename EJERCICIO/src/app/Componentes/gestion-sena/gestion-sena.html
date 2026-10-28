@@ -1,801 +1,804 @@
-
-<!-- ENCABEZADO -->
-<mat-toolbar class="encabezado">
-  <mat-icon>dashboard</mat-icon>
-  <span>SAPFPI · Gestión Integral</span>
-</mat-toolbar>
-
-<!-- BOTONES DE NAVEGACIÓN -->
-<div class="botones">
-
-  <button mat-raised-button
-    (click)="mostrarSeccion('instructores')">
-    <mat-icon>people</mat-icon>
-    Instructores
-  </button>
-
-  <button mat-raised-button
-    (click)="mostrarSeccion('competencias')">
-    <mat-icon>school</mat-icon>
-    Competencias
-  </button>
-
-  <button mat-raised-button
-    (click)="mostrarSeccion('asignaciones')">
-    <mat-icon>assignment</mat-icon>
-    Asignaciones
-  </button>
-
-  <button mat-raised-button
-    (click)="mostrarSeccion('fichas')">
-    <mat-icon>folder</mat-icon>
-    Fichas Tituladas
-  </button>
-
-</div>
-
-<!-- CONTENIDO PRINCIPAL -->
-<div>
-
-  <!-- INSTRUCTORES -->
-  @if (seccion === 'instructores') {
-
-    <h2>Gestión de Instructores</h2>
-
-    <button mat-raised-button
-      color="primary"
-      (click)="abrirModalInstructor()">
-      <mat-icon>add</mat-icon>
-      Nuevo instructor
-    </button>
-    <div class="tabla">
-      <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
-      <table mat-table [dataSource]="instructores" class="mat-shadow-2 demo-table">
-
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>
-            ID
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            {{ instructor.id }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="nombreCompleto">
-          <th mat-header-cell *matHeaderCellDef>
-            Nombre completo
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            {{ instructor.nombreCompleto }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="telefono">
-          <th mat-header-cell *matHeaderCellDef>
-            Teléfono
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            {{ instructor.telefono }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="correo">
-          <th mat-header-cell *matHeaderCellDef>
-            Correo
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            {{ instructor.correo }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="cargo">
-          <th mat-header-cell *matHeaderCellDef>
-            Cargo
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            {{ instructor.cargo }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="planta">
-          <th mat-header-cell *matHeaderCellDef>
-            Planta
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            {{ instructor.planta ? '✅' : '❌' }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="liderFicha">
-          <th mat-header-cell *matHeaderCellDef>
-            Líder de ficha
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            {{ instructor.liderFicha ? '✅' : '❌' }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>
-            Acciones
-          </th>
-          <td mat-cell *matCellDef="let instructor">
-            <button mat-icon-button
-              color="primary"
-              title="Editar"
-              (click)="editarInstructor(instructor)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button
-              color="warn"
-              title="Eliminar"
-              (click)="eliminarInstructor(instructor)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row
-          *matHeaderRowDef="displayedColumns">
-        </tr>
-
-        <tr mat-row
-          *matRowDef="let row; columns: displayedColumns">
-        </tr>
-
-        <tr *matNoDataRow>
-          <td [attr.colspan]="displayedColumns.length">
-            No hay instructores registrados.
-          </td>
-        </tr>
-
-      </table>
-    </div>
+<div class="body">
+  
+  <!-- ENCABEZADO -->
+  <div class="contenedor">
+    <span>SAPFPI · Gestión Integral</span>
+  </div>
     
+  
 
-  }
-
-  <!-- COMPETENCIAS -->
-  @else if (seccion === 'competencias') {
-
-    <h2>Gestión de Competencias</h2>
+  <!-- BOTONES DE NAVEGACIÓN -->
+  <div class="botones">
 
     <button mat-raised-button
-      color="primary"
-      (click)="abrirModalCompetencia()">
-      <mat-icon>add</mat-icon>
-      Nueva competencia
+      (click)="mostrarSeccion('instructores')">
+      <mat-icon>people</mat-icon>
+      Instructores
     </button>
-    <div class="tabla">
-      <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
-      <table mat-table [dataSource]="competencias" class="mat-shadow-2 demo-table">
 
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>
-            ID Competencia
-          </th>
-          <td mat-cell *matCellDef="let competencia">
-            {{ competencia.id }}
-          </td>
-        </ng-container>
+    <button mat-raised-button
+      (click)="mostrarSeccion('competencias')">
+      <mat-icon>school</mat-icon>
+      Competencias
+    </button>
 
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>
-            Nombre
-          </th>
-          <td mat-cell *matCellDef="let competencia">
-            {{ competencia.nombre }}
-          </td>
-        </ng-container>
+    <button mat-raised-button
+      (click)="mostrarSeccion('asignaciones')">
+      <mat-icon>assignment</mat-icon>
+      Asignaciones
+    </button>
 
-        <ng-container matColumnDef="tipo">
-          <th mat-header-cell *matHeaderCellDef>
-            Tipo
-          </th>
-          <td mat-cell *matCellDef="let competencia">
-            {{ competencia.tipo }}
-          </td>
-        </ng-container>
+    <button mat-raised-button
+      (click)="mostrarSeccion('fichas')">
+      <mat-icon>folder</mat-icon>
+      Fichas Tituladas
+    </button>
 
-        <ng-container matColumnDef="duracion">
-          <th mat-header-cell *matHeaderCellDef>
-            Duración (horas)
-          </th>
-          <td mat-cell *matCellDef="let competencia">
-            {{ competencia.duracion }}
-          </td>
-        </ng-container>
+  </div>
 
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>
-            Acciones
-          </th>
-          <td mat-cell *matCellDef="let competencia">
-            <button mat-icon-button
-              color="primary"
-              title="Editar"
-              (click)="editarCompetencia(competencia)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button
-              color="warn"
-              title="Eliminar"
-              (click)="eliminarCompetencia(competencia)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+  <!-- CONTENIDO PRINCIPAL -->
+  <div>
 
-        <tr mat-header-row
-          *matHeaderRowDef="displayedColumnsCompetencias">
-        </tr>
+    <!-- INSTRUCTORES -->
+    @if (seccion === 'instructores') {
 
-        <tr mat-row
-          *matRowDef="let row; columns: displayedColumnsCompetencias">
-        </tr>
+      <h2>Gestión de Instructores</h2>
 
-        <tr *matNoDataRow>
-          <td [attr.colspan]="displayedColumnsCompetencias.length">
-            No hay competencias registradas.
-          </td>
-        </tr>
+      <button mat-raised-button
+        color="primary"
+        (click)="abrirModalInstructor()">
+        <mat-icon>add</mat-icon>
+        Nuevo instructor
+      </button>
+      <div class="tabla">
+        <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
+        <table mat-table [dataSource]="instructores" class="mat-shadow-2 demo-table">
 
-      </table>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>
+              ID
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              {{ instructor.id }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombreCompleto">
+            <th mat-header-cell *matHeaderCellDef>
+              Nombre completo
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              {{ instructor.nombreCompleto }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="telefono">
+            <th mat-header-cell *matHeaderCellDef>
+              Teléfono
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              {{ instructor.telefono }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="correo">
+            <th mat-header-cell *matHeaderCellDef>
+              Correo
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              {{ instructor.correo }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cargo">
+            <th mat-header-cell *matHeaderCellDef>
+              Cargo
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              {{ instructor.cargo }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="planta">
+            <th mat-header-cell *matHeaderCellDef>
+              Planta
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              {{ instructor.planta ? '✅' : '❌' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="liderFicha">
+            <th mat-header-cell *matHeaderCellDef>
+              Líder de ficha
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              {{ instructor.liderFicha ? '✅' : '❌' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>
+              Acciones
+            </th>
+            <td mat-cell *matCellDef="let instructor">
+              <button mat-icon-button
+                color="primary"
+                title="Editar"
+                (click)="editarInstructor(instructor)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button
+                color="warn"
+                title="Eliminar"
+                (click)="eliminarInstructor(instructor)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row
+            *matHeaderRowDef="displayedColumns">
+          </tr>
+
+          <tr mat-row
+            *matRowDef="let row; columns: displayedColumns">
+          </tr>
+
+          <tr *matNoDataRow>
+            <td [attr.colspan]="displayedColumns.length">
+              No hay instructores registrados.
+            </td>
+          </tr>
+
+        </table>
+      </div>
+      
+
+    }
+
+    <!-- COMPETENCIAS -->
+    @else if (seccion === 'competencias') {
+
+      <h2>Gestión de Competencias</h2>
+
+      <button mat-raised-button
+        color="primary"
+        (click)="abrirModalCompetencia()">
+        <mat-icon>add</mat-icon>
+        Nueva competencia
+      </button>
+      <div class="tabla">
+        <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
+        <table mat-table [dataSource]="competencias" class="mat-shadow-2 demo-table">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>
+              ID Competencia
+            </th>
+            <td mat-cell *matCellDef="let competencia">
+              {{ competencia.id }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>
+              Nombre
+            </th>
+            <td mat-cell *matCellDef="let competencia">
+              {{ competencia.nombre }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef>
+              Tipo
+            </th>
+            <td mat-cell *matCellDef="let competencia">
+              {{ competencia.tipo }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="duracion">
+            <th mat-header-cell *matHeaderCellDef>
+              Duración (horas)
+            </th>
+            <td mat-cell *matCellDef="let competencia">
+              {{ competencia.duracion }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>
+              Acciones
+            </th>
+            <td mat-cell *matCellDef="let competencia">
+              <button mat-icon-button
+                color="primary"
+                title="Editar"
+                (click)="editarCompetencia(competencia)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button
+                color="warn"
+                title="Eliminar"
+                (click)="eliminarCompetencia(competencia)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row
+            *matHeaderRowDef="displayedColumnsCompetencias">
+          </tr>
+
+          <tr mat-row
+            *matRowDef="let row; columns: displayedColumnsCompetencias">
+          </tr>
+
+          <tr *matNoDataRow>
+            <td [attr.colspan]="displayedColumnsCompetencias.length">
+              No hay competencias registradas.
+            </td>
+          </tr>
+
+        </table>
+      </div>
+
+    }
+
+    <!-- ASIGNACIONES -->
+    @else if (seccion === 'asignaciones') {
+
+      <h2>Gestión de Asignaciones</h2>
+
+      <button mat-raised-button
+        color="primary"
+        (click)="abrirModalAsignacion()">
+        <mat-icon>add</mat-icon>
+        Nueva asignación
+      </button>
+      <div class="tabla">
+        <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
+        <table mat-table [dataSource]="asignaciones" class="mat-shadow-2 demo-table">
+
+          <ng-container matColumnDef="idInstructor">
+            <th mat-header-cell *matHeaderCellDef>
+              ID Instructor
+            </th>
+            <td mat-cell *matCellDef="let asignacion">
+              {{ asignacion.idInstructor }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombreInstructor">
+            <th mat-header-cell *matHeaderCellDef>
+              Instructor
+            </th>
+            <td mat-cell *matCellDef="let asignacion">
+              {{ asignacion.nombreInstructor }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="idCompetencia">
+            <th mat-header-cell *matHeaderCellDef>
+              ID Competencia
+            </th>
+            <td mat-cell *matCellDef="let asignacion">
+              {{ asignacion.idCompetencia }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombreCompetencia">
+            <th mat-header-cell *matHeaderCellDef>
+              Competencia
+            </th>
+            <td mat-cell *matCellDef="let asignacion">
+              {{ asignacion.nombreCompetencia }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>
+              Acciones
+            </th>
+            <td mat-cell *matCellDef="let asignacion">
+              <button mat-icon-button
+                color="warn"
+                title="Eliminar"
+                (click)="eliminarAsignacion(asignacion)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row
+            *matHeaderRowDef="displayedColumnsAsignaciones">
+          </tr>
+
+          <tr mat-row
+            *matRowDef="let row; columns: displayedColumnsAsignaciones">
+          </tr>
+
+          <tr *matNoDataRow>
+            <td [attr.colspan]="displayedColumnsAsignaciones.length">
+              No hay asignaciones registradas.
+            </td>
+          </tr>
+
+        </table>
+      </div>
+
+    }
+
+    <!-- FICHAS TITULADAS -->
+    @else if (seccion === 'fichas') {
+
+      <h2>Gestión de Fichas Tituladas</h2>
+
+      <button mat-raised-button
+        color="primary"
+        (click)="abrirModalFicha()">
+        <mat-icon>add</mat-icon>
+        Nueva ficha
+      </button>
+      <div class="tabla">
+        <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
+        <table mat-table [dataSource]="fichas" class="mat-shadow-2 demo-table">
+
+          <ng-container matColumnDef="idFicha">
+            <th mat-header-cell *matHeaderCellDef>
+              Número de ficha
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              {{ ficha.idFicha }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="programa">
+            <th mat-header-cell *matHeaderCellDef>
+              Programa
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              {{ ficha.programa }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="jornada">
+            <th mat-header-cell *matHeaderCellDef>
+              Jornada
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              {{ ficha.jornada }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="instructorLider">
+            <th mat-header-cell *matHeaderCellDef>
+              Instructor líder
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              {{ ficha.nombreInstructorLider }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ambiente">
+            <th mat-header-cell *matHeaderCellDef>
+              Ambiente
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              {{ ficha.ambiente }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fechaInicio">
+            <th mat-header-cell *matHeaderCellDef>
+              Fecha inicio
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              {{ ficha.fechaInicio }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fechaFin">
+            <th mat-header-cell *matHeaderCellDef>
+              Fecha fin
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              {{ ficha.fechaFin }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>
+              Acciones
+            </th>
+            <td mat-cell *matCellDef="let ficha">
+              <button mat-icon-button
+                color="primary"
+                title="Editar"
+                (click)="editarFicha(ficha)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button
+                color="warn"
+                title="Eliminar"
+                (click)="eliminarFicha(ficha)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row
+            *matHeaderRowDef="displayedColumnsFichas">
+          </tr>
+
+          <tr mat-row
+            *matRowDef="let row; columns: displayedColumnsFichas">
+          </tr>
+
+          <tr *matNoDataRow>
+            <td [attr.colspan]="displayedColumnsFichas.length">
+              No hay fichas registradas.
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    }
+
+  
+
+  </div>
+
+  <!-- MODAL DE REGISTRO DE INSTRUCTOR -->
+  @if (modalInstructorAbierto) {
+
+    <div class="fondo-modal"
+      (click)="cerrarModalInstructor()">
+
+      <div class="modal"
+        (click)="$event.stopPropagation()">
+
+        <h2>{{ idEditando === null ? 'Registrar instructor' : 'Editar instructor' }}</h2>
+
+        <form #form="ngForm"
+          (ngSubmit)="guardarInstructor()">
+
+          <mat-form-field appearance="outline">
+            <mat-label>ID</mat-label>
+            <input matInput
+              name="id"
+              [(ngModel)]="instructor.id"
+              [readonly]="idEditando !== null"
+              required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre completo</mat-label>
+            <input matInput
+              name="nombreCompleto"
+              [(ngModel)]="instructor.nombreCompleto"
+              required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput
+              type="tel"
+              name="telefono"
+              [(ngModel)]="instructor.telefono"
+              required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput
+              type="email"
+              name="correo"
+              [(ngModel)]="instructor.correo"
+              required
+              email>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cargo</mat-label>
+            <mat-select name="cargo"
+              [(ngModel)]="instructor.cargo"
+              required>
+              @for (cargo of cargos; track cargo) {
+                <mat-option [value]="cargo">{{ cargo }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <div class="checks">
+            <mat-checkbox name="planta"
+              [(ngModel)]="instructor.planta">
+              Planta
+            </mat-checkbox>
+
+            <mat-checkbox name="liderFicha"
+              [(ngModel)]="instructor.liderFicha">
+              Líder de ficha
+            </mat-checkbox>
+          </div>
+
+          <button mat-button
+            type="button"
+            (click)="cerrarModalInstructor()">
+            Cancelar
+          </button>
+
+          <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="form.invalid">
+            <mat-icon>save</mat-icon>
+            Guardar
+          </button>
+
+        </form>
+
+      </div>
+
     </div>
 
   }
 
-  <!-- ASIGNACIONES -->
-  @else if (seccion === 'asignaciones') {
+  <!-- MODAL DE REGISTRO DE COMPETENCIA -->
+  @if (modalCompetenciaAbierto) {
 
-    <h2>Gestión de Asignaciones</h2>
+    <div class="fondo-modal"
+      (click)="cerrarModalCompetencia()">
 
-    <button mat-raised-button
-      color="primary"
-      (click)="abrirModalAsignacion()">
-      <mat-icon>add</mat-icon>
-      Nueva asignación
-    </button>
-    <div class="tabla">
-      <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
-      <table mat-table [dataSource]="asignaciones" class="mat-shadow-2 demo-table">
+      <div class="modal"
+        (click)="$event.stopPropagation()">
 
-        <ng-container matColumnDef="idInstructor">
-          <th mat-header-cell *matHeaderCellDef>
-            ID Instructor
-          </th>
-          <td mat-cell *matCellDef="let asignacion">
-            {{ asignacion.idInstructor }}
-          </td>
-        </ng-container>
+        <h2>{{ idCompetenciaEditando === null ? 'Registrar competencia' : 'Editar competencia' }}</h2>
 
-        <ng-container matColumnDef="nombreInstructor">
-          <th mat-header-cell *matHeaderCellDef>
-            Instructor
-          </th>
-          <td mat-cell *matCellDef="let asignacion">
-            {{ asignacion.nombreInstructor }}
-          </td>
-        </ng-container>
+        <form #formCompetencia="ngForm"
+          (ngSubmit)="guardarCompetencia()">
 
-        <ng-container matColumnDef="idCompetencia">
-          <th mat-header-cell *matHeaderCellDef>
-            ID Competencia
-          </th>
-          <td mat-cell *matCellDef="let asignacion">
-            {{ asignacion.idCompetencia }}
-          </td>
-        </ng-container>
+          <mat-form-field appearance="outline">
+            <mat-label>ID Competencia</mat-label>
+            <input matInput
+              name="idCompetencia"
+              [(ngModel)]="competencia.id"
+              [readonly]="idCompetenciaEditando !== null"
+              required>
+          </mat-form-field>
 
-        <ng-container matColumnDef="nombreCompetencia">
-          <th mat-header-cell *matHeaderCellDef>
-            Competencia
-          </th>
-          <td mat-cell *matCellDef="let asignacion">
-            {{ asignacion.nombreCompetencia }}
-          </td>
-        </ng-container>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput
+              name="nombre"
+              [(ngModel)]="competencia.nombre"
+              required>
+          </mat-form-field>
 
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>
-            Acciones
-          </th>
-          <td mat-cell *matCellDef="let asignacion">
-            <button mat-icon-button
-              color="warn"
-              title="Eliminar"
-              (click)="eliminarAsignacion(asignacion)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select name="tipo"
+              [(ngModel)]="competencia.tipo"
+              required>
+              @for (tipo of tipos; track tipo) {
+                <mat-option [value]="tipo">{{ tipo }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
 
-        <tr mat-header-row
-          *matHeaderRowDef="displayedColumnsAsignaciones">
-        </tr>
+          <mat-form-field appearance="outline">
+            <mat-label>Duración (horas)</mat-label>
+            <input matInput
+              type="number"
+              name="duracion"
+              [(ngModel)]="competencia.duracion"
+              min="1"
+              required>
+          </mat-form-field>
 
-        <tr mat-row
-          *matRowDef="let row; columns: displayedColumnsAsignaciones">
-        </tr>
+          <button mat-button
+            type="button"
+            (click)="cerrarModalCompetencia()">
+            Cancelar
+          </button>
 
-        <tr *matNoDataRow>
-          <td [attr.colspan]="displayedColumnsAsignaciones.length">
-            No hay asignaciones registradas.
-          </td>
-        </tr>
+          <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="formCompetencia.invalid">
+            <mat-icon>save</mat-icon>
+            Guardar
+          </button>
 
-      </table>
+        </form>
+
+      </div>
+
     </div>
 
   }
 
-  <!-- FICHAS TITULADAS -->
-  @else if (seccion === 'fichas') {
+  <!-- MODAL DE NUEVA ASIGNACIÓN -->
+  @if (modalAsignacionAbierto) {
 
-    <h2>Gestión de Fichas Tituladas</h2>
+    <div class="fondo-modal"
+      (click)="cerrarModalAsignacion()">
 
-    <button mat-raised-button
-      color="primary"
-      (click)="abrirModalFicha()">
-      <mat-icon>add</mat-icon>
-      Nueva ficha
-    </button>
-    <div class="tabla">
-      <!-- TABLA ESTÁNDAR DE ANGULAR MATERIAL -->
-      <table mat-table [dataSource]="fichas" class="mat-shadow-2 demo-table">
+      <div class="modal"
+        (click)="$event.stopPropagation()">
 
-        <ng-container matColumnDef="idFicha">
-          <th mat-header-cell *matHeaderCellDef>
-            Número de ficha
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            {{ ficha.idFicha }}
-          </td>
-        </ng-container>
+        <h2>Nueva asignación</h2>
 
-        <ng-container matColumnDef="programa">
-          <th mat-header-cell *matHeaderCellDef>
-            Programa
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            {{ ficha.programa }}
-          </td>
-        </ng-container>
+        <form #formAsignacion="ngForm"
+          (ngSubmit)="asignar()">
 
-        <ng-container matColumnDef="jornada">
-          <th mat-header-cell *matHeaderCellDef>
-            Jornada
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            {{ ficha.jornada }}
-          </td>
-        </ng-container>
+          <mat-form-field appearance="outline">
+            <mat-label>Instructor</mat-label>
+            <mat-select name="idInstructor"
+              [(ngModel)]="asignacion.idInstructor"
+              required>
+              @for (instructor of instructores; track instructor.id) {
+                <mat-option [value]="instructor.id">
+                  {{ instructor.id }} - {{ instructor.nombreCompleto }}
+                </mat-option>
+              }
+            </mat-select>
+            @if (instructores.length === 0) {
+              <mat-hint>No hay instructores registrados</mat-hint>
+            }
+          </mat-form-field>
 
-        <ng-container matColumnDef="instructorLider">
-          <th mat-header-cell *matHeaderCellDef>
-            Instructor líder
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            {{ ficha.nombreInstructorLider }}
-          </td>
-        </ng-container>
+          <mat-form-field appearance="outline">
+            <mat-label>Competencia</mat-label>
+            <mat-select name="idCompetencia"
+              [(ngModel)]="asignacion.idCompetencia"
+              required>
+              @for (competencia of competencias; track competencia.id) {
+                <mat-option [value]="competencia.id">
+                  {{ competencia.id }} - {{ competencia.nombre }}
+                </mat-option>
+              }
+            </mat-select>
+            @if (competencias.length === 0) {
+              <mat-hint>No hay competencias registradas</mat-hint>
+            }
+          </mat-form-field>
 
-        <ng-container matColumnDef="ambiente">
-          <th mat-header-cell *matHeaderCellDef>
-            Ambiente
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            {{ ficha.ambiente }}
-          </td>
-        </ng-container>
+          <button mat-button
+            type="button"
+            (click)="cerrarModalAsignacion()">
+            Cancelar
+          </button>
 
-        <ng-container matColumnDef="fechaInicio">
-          <th mat-header-cell *matHeaderCellDef>
-            Fecha inicio
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            {{ ficha.fechaInicio }}
-          </td>
-        </ng-container>
+          <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="formAsignacion.invalid">
+            <mat-icon>assignment_turned_in</mat-icon>
+            Asignar
+          </button>
 
-        <ng-container matColumnDef="fechaFin">
-          <th mat-header-cell *matHeaderCellDef>
-            Fecha fin
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            {{ ficha.fechaFin }}
-          </td>
-        </ng-container>
+        </form>
 
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>
-            Acciones
-          </th>
-          <td mat-cell *matCellDef="let ficha">
-            <button mat-icon-button
-              color="primary"
-              title="Editar"
-              (click)="editarFicha(ficha)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button
-              color="warn"
-              title="Eliminar"
-              (click)="eliminarFicha(ficha)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      </div>
 
-        <tr mat-header-row
-          *matHeaderRowDef="displayedColumnsFichas">
-        </tr>
-
-        <tr mat-row
-          *matRowDef="let row; columns: displayedColumnsFichas">
-        </tr>
-
-        <tr *matNoDataRow>
-          <td [attr.colspan]="displayedColumnsFichas.length">
-            No hay fichas registradas.
-          </td>
-        </tr>
-
-      </table>
     </div>
+
   }
 
- 
+  <!-- MODAL DE NUEVA FICHA -->
+  @if (modalFichaAbierto) {
 
+    <div class="fondo-modal"
+      (click)="cerrarModalFicha()">
+
+      <div class="modal"
+        (click)="$event.stopPropagation()">
+
+        <h2>{{ idFichaEditando === null ? 'Nueva ficha' : 'Editar ficha' }}</h2>
+
+        <form #formFicha="ngForm"
+          (ngSubmit)="guardarFicha()">
+
+          <mat-form-field appearance="outline">
+            <mat-label>ID Ficha (número de ficha)</mat-label>
+            <input matInput
+              name="idFicha"
+              [(ngModel)]="ficha.idFicha"
+              [readonly]="idFichaEditando !== null"
+              required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Programa</mat-label>
+            <mat-select name="programa"
+              [(ngModel)]="ficha.programa"
+              required>
+              @for (programa of programas; track programa) {
+                <mat-option [value]="programa">{{ programa }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Jornada</mat-label>
+            <mat-select name="jornada"
+              [(ngModel)]="ficha.jornada"
+              required>
+              @for (jornada of jornadas; track jornada) {
+                <mat-option [value]="jornada">{{ jornada }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Instructor líder</mat-label>
+            <mat-select name="idInstructorLider"
+              [(ngModel)]="ficha.idInstructorLider"
+              (selectionChange)="actualizarNombreLider()"
+              required>
+              @for (instructor of instructoresLider; track instructor.id) {
+                <mat-option [value]="instructor.id">
+                  {{ instructor.id }} - {{ instructor.nombreCompleto }}
+                </mat-option>
+              }
+            </mat-select>
+            @if (instructoresLider.length === 0) {
+              <mat-hint>No hay instructores líderes de ficha</mat-hint>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Ambiente</mat-label>
+            <mat-select name="ambiente"
+              [(ngModel)]="ficha.ambiente"
+              required>
+              @for (ambiente of ambientes; track ambiente) {
+                <mat-option [value]="ambiente">{{ ambiente }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de inicio</mat-label>
+            <input matInput
+              type="date"
+              name="fechaInicio"
+              [(ngModel)]="ficha.fechaInicio"
+              required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha fin</mat-label>
+            <input matInput
+              type="date"
+              name="fechaFin"
+              [(ngModel)]="ficha.fechaFin"
+              [min]="ficha.fechaInicio"
+              required>
+          </mat-form-field>
+
+          <button mat-button
+            type="button"
+            (click)="cerrarModalFicha()">
+            Cancelar
+          </button>
+
+          <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="formFicha.invalid">
+            <mat-icon>save</mat-icon>
+            Guardar
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  }
 </div>
-
-<!-- MODAL DE REGISTRO DE INSTRUCTOR -->
-@if (modalInstructorAbierto) {
-
-  <div class="fondo-modal"
-    (click)="cerrarModalInstructor()">
-
-    <div class="modal"
-      (click)="$event.stopPropagation()">
-
-      <h2>{{ idEditando === null ? 'Registrar instructor' : 'Editar instructor' }}</h2>
-
-      <form #form="ngForm"
-        (ngSubmit)="guardarInstructor()">
-
-        <mat-form-field appearance="outline">
-          <mat-label>ID</mat-label>
-          <input matInput
-            name="id"
-            [(ngModel)]="instructor.id"
-            [readonly]="idEditando !== null"
-            required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre completo</mat-label>
-          <input matInput
-            name="nombreCompleto"
-            [(ngModel)]="instructor.nombreCompleto"
-            required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Teléfono</mat-label>
-          <input matInput
-            type="tel"
-            name="telefono"
-            [(ngModel)]="instructor.telefono"
-            required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Correo electrónico</mat-label>
-          <input matInput
-            type="email"
-            name="correo"
-            [(ngModel)]="instructor.correo"
-            required
-            email>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Cargo</mat-label>
-          <mat-select name="cargo"
-            [(ngModel)]="instructor.cargo"
-            required>
-            @for (cargo of cargos; track cargo) {
-              <mat-option [value]="cargo">{{ cargo }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <div class="checks">
-          <mat-checkbox name="planta"
-            [(ngModel)]="instructor.planta">
-            Planta
-          </mat-checkbox>
-
-          <mat-checkbox name="liderFicha"
-            [(ngModel)]="instructor.liderFicha">
-            Líder de ficha
-          </mat-checkbox>
-        </div>
-
-        <button mat-button
-          type="button"
-          (click)="cerrarModalInstructor()">
-          Cancelar
-        </button>
-
-        <button mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="form.invalid">
-          <mat-icon>save</mat-icon>
-          Guardar
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-}
-
-<!-- MODAL DE REGISTRO DE COMPETENCIA -->
-@if (modalCompetenciaAbierto) {
-
-  <div class="fondo-modal"
-    (click)="cerrarModalCompetencia()">
-
-    <div class="modal"
-      (click)="$event.stopPropagation()">
-
-      <h2>{{ idCompetenciaEditando === null ? 'Registrar competencia' : 'Editar competencia' }}</h2>
-
-      <form #formCompetencia="ngForm"
-        (ngSubmit)="guardarCompetencia()">
-
-        <mat-form-field appearance="outline">
-          <mat-label>ID Competencia</mat-label>
-          <input matInput
-            name="idCompetencia"
-            [(ngModel)]="competencia.id"
-            [readonly]="idCompetenciaEditando !== null"
-            required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre</mat-label>
-          <input matInput
-            name="nombre"
-            [(ngModel)]="competencia.nombre"
-            required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Tipo</mat-label>
-          <mat-select name="tipo"
-            [(ngModel)]="competencia.tipo"
-            required>
-            @for (tipo of tipos; track tipo) {
-              <mat-option [value]="tipo">{{ tipo }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Duración (horas)</mat-label>
-          <input matInput
-            type="number"
-            name="duracion"
-            [(ngModel)]="competencia.duracion"
-            min="1"
-            required>
-        </mat-form-field>
-
-        <button mat-button
-          type="button"
-          (click)="cerrarModalCompetencia()">
-          Cancelar
-        </button>
-
-        <button mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="formCompetencia.invalid">
-          <mat-icon>save</mat-icon>
-          Guardar
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-}
-
-<!-- MODAL DE NUEVA ASIGNACIÓN -->
-@if (modalAsignacionAbierto) {
-
-  <div class="fondo-modal"
-    (click)="cerrarModalAsignacion()">
-
-    <div class="modal"
-      (click)="$event.stopPropagation()">
-
-      <h2>Nueva asignación</h2>
-
-      <form #formAsignacion="ngForm"
-        (ngSubmit)="asignar()">
-
-        <mat-form-field appearance="outline">
-          <mat-label>Instructor</mat-label>
-          <mat-select name="idInstructor"
-            [(ngModel)]="asignacion.idInstructor"
-            required>
-            @for (instructor of instructores; track instructor.id) {
-              <mat-option [value]="instructor.id">
-                {{ instructor.id }} - {{ instructor.nombreCompleto }}
-              </mat-option>
-            }
-          </mat-select>
-          @if (instructores.length === 0) {
-            <mat-hint>No hay instructores registrados</mat-hint>
-          }
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Competencia</mat-label>
-          <mat-select name="idCompetencia"
-            [(ngModel)]="asignacion.idCompetencia"
-            required>
-            @for (competencia of competencias; track competencia.id) {
-              <mat-option [value]="competencia.id">
-                {{ competencia.id }} - {{ competencia.nombre }}
-              </mat-option>
-            }
-          </mat-select>
-          @if (competencias.length === 0) {
-            <mat-hint>No hay competencias registradas</mat-hint>
-          }
-        </mat-form-field>
-
-        <button mat-button
-          type="button"
-          (click)="cerrarModalAsignacion()">
-          Cancelar
-        </button>
-
-        <button mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="formAsignacion.invalid">
-          <mat-icon>assignment_turned_in</mat-icon>
-          Asignar
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-}
-
-<!-- MODAL DE NUEVA FICHA -->
-@if (modalFichaAbierto) {
-
-  <div class="fondo-modal"
-    (click)="cerrarModalFicha()">
-
-    <div class="modal"
-      (click)="$event.stopPropagation()">
-
-      <h2>{{ idFichaEditando === null ? 'Nueva ficha' : 'Editar ficha' }}</h2>
-
-      <form #formFicha="ngForm"
-        (ngSubmit)="guardarFicha()">
-
-        <mat-form-field appearance="outline">
-          <mat-label>ID Ficha (número de ficha)</mat-label>
-          <input matInput
-            name="idFicha"
-            [(ngModel)]="ficha.idFicha"
-            [readonly]="idFichaEditando !== null"
-            required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Programa</mat-label>
-          <mat-select name="programa"
-            [(ngModel)]="ficha.programa"
-            required>
-            @for (programa of programas; track programa) {
-              <mat-option [value]="programa">{{ programa }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Jornada</mat-label>
-          <mat-select name="jornada"
-            [(ngModel)]="ficha.jornada"
-            required>
-            @for (jornada of jornadas; track jornada) {
-              <mat-option [value]="jornada">{{ jornada }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Instructor líder</mat-label>
-          <mat-select name="idInstructorLider"
-            [(ngModel)]="ficha.idInstructorLider"
-            (selectionChange)="actualizarNombreLider()"
-            required>
-            @for (instructor of instructoresLider; track instructor.id) {
-              <mat-option [value]="instructor.id">
-                {{ instructor.id }} - {{ instructor.nombreCompleto }}
-              </mat-option>
-            }
-          </mat-select>
-          @if (instructoresLider.length === 0) {
-            <mat-hint>No hay instructores líderes de ficha</mat-hint>
-          }
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Ambiente</mat-label>
-          <mat-select name="ambiente"
-            [(ngModel)]="ficha.ambiente"
-            required>
-            @for (ambiente of ambientes; track ambiente) {
-              <mat-option [value]="ambiente">{{ ambiente }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Fecha de inicio</mat-label>
-          <input matInput
-            type="date"
-            name="fechaInicio"
-            [(ngModel)]="ficha.fechaInicio"
-            required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Fecha fin</mat-label>
-          <input matInput
-            type="date"
-            name="fechaFin"
-            [(ngModel)]="ficha.fechaFin"
-            [min]="ficha.fechaInicio"
-            required>
-        </mat-form-field>
-
-        <button mat-button
-          type="button"
-          (click)="cerrarModalFicha()">
-          Cancelar
-        </button>
-
-        <button mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="formFicha.invalid">
-          <mat-icon>save</mat-icon>
-          Guardar
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-}

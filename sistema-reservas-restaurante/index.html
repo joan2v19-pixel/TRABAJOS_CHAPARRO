@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de reservas y gestión de restaurante">
+    <title>Sistema de Reservas de Restaurante</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- =====================================================
+         PANTALLA DE INICIO DE SESIÓN
+         ===================================================== -->
+    <div id="pantalla-login" class="pantalla-login">
+        <div class="tarjeta-login">
+            <h1 class="titulo-login">Sistema de Reservas de Restaurante</h1>
+            <p class="subtitulo-login">Ingrese con su usuario y contraseña</p>
+
+            <form id="formulario-login" novalidate>
+                <div class="campo">
+                    <label for="campo-usuario">Usuario</label>
+                    <input type="text" id="campo-usuario" name="usuario" maxlength="50"
+                           autocomplete="username" placeholder="Ejemplo: admin">
+                </div>
+
+                <div class="campo">
+                    <label for="campo-contrasena">Contraseña</label>
+                    <input type="password" id="campo-contrasena" name="contrasena" maxlength="100"
+                           autocomplete="current-password" placeholder="Su contraseña">
+                </div>
+
+                <div id="mensaje-login" class="mensaje-formulario" hidden></div>
+
+                <button type="submit" class="boton boton-primario boton-ancho">Iniciar sesión</button>
+            </form>
+
+            <div class="separador-login">
+                <span>o continúe con</span>
+            </div>
+
+            <!-- Botón de Google. Se dibuja desde js/auth.js -->
+            <div id="contenedor-google" class="contenedor-google"></div>
+
+            <div class="usuarios-demo">
+                <p class="titulo-usuarios-demo">Usuarios de demostración</p>
+                <ul>
+                    <li><strong>admin</strong> / admin123</li>
+                    <li><strong>mesero</strong> / mesero123</li>
+                    <li><strong>cocina</strong> / cocina123</li>
+                    <li><strong>despacho</strong> / despacho123</li>
+                </ul>
+                <p class="nota-cifrado">
+                    La información se guarda cifrada en el navegador
+                    (LocalStorage y SessionStorage).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         APLICACIÓN PRINCIPAL
+         ===================================================== -->
+    <div id="aplicacion" class="aplicacion" hidden>
+
+        <!-- Encabezado superior -->
+        <header class="encabezado">
+            <button id="boton-menu" class="boton-menu-movil" type="button"
+                    aria-label="Abrir menú de navegación">&#9776;</button>
+
+            <h2 id="titulo-vista" class="titulo-vista">Panel principal</h2>
+
+            <div class="usuario-actual">
+                <div class="datos-usuario">
+                    <span id="nombre-usuario" class="nombre-usuario"></span>
+                    <span id="rol-usuario" class="etiqueta etiqueta-azul"></span>
+                </div>
+                <button id="boton-cerrar-sesion" class="boton boton-secundario boton-pequeño" type="button">
+                    Cerrar sesión
+                </button>
+            </div>
+        </header>
+
+        <!-- Menú lateral -->
+        <nav id="menu-lateral" class="menu-lateral" aria-label="Menú principal">
+            <p class="titulo-menu">Menú</p>
+            <ul id="lista-menu" class="lista-menu"></ul>
+        </nav>
+
+        <!-- Panel principal donde se dibuja cada vista -->
+        <main id="contenido-principal" class="contenido-principal"></main>
+    </div>
+
+    <!-- =====================================================
+         VENTANA MODAL
+         ===================================================== -->
+    <div id="fondo-modal" class="fondo-modal" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
+            <div class="modal-cabecera">
+                <h3 id="titulo-modal" class="titulo-modal"></h3>
+                <button id="boton-cerrar-modal" class="boton-cerrar-modal" type="button"
+                        aria-label="Cerrar ventana">&times;</button>
+            </div>
+            <div id="contenido-modal" class="modal-cuerpo"></div>
+        </div>
+    </div>
+
+    <!-- Contenedor de mensajes de éxito y error -->
+    <div id="contenedor-mensajes" class="contenedor-mensajes" aria-live="polite"></div>
+
+    <!-- El orden de los archivos es importante:
+         storage.js define las funciones de datos,
+         auth.js usa storage.js,
+         modules.js usa storage.js y auth.js,
+         app.js los conecta todos. -->
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/modules.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
